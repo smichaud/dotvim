@@ -207,6 +207,9 @@ nmap <Leader>vv :set paste<cr>i<c-r>=protodef#ReturnSkeletonsFromPrototypesForCu
  nnoremap <Leader>wl <C-W>l
  nnoremap <Leader>wj <C-W>j
  nnoremap <Leader>wk <C-W>k
+ nnoremap <Leader>wv <C-W>v
+ nnoremap <Leader>ws <C-W>s
+ nnoremap <Leader>wq <C-W>q
 
 " Faster copy/paste from clipboard
 noremap <Leader>y "+y
@@ -228,8 +231,24 @@ nnoremap <silent><Leader>xO m`:silent -g/\m^\s*$/d<CR>``:noh<CR>
 nnoremap <silent><Leader>o :set paste<CR>m`o<Esc>``:set nopaste<CR>
 nnoremap <silent><Leader>O :set paste<CR>m`O<Esc>``:set nopaste<CR>
 
-" Search word under the cursor
+" Search and replace (can use :Ggrep and :grep)
+nnoremap <Leader>rr :%s/\<<C-r><C-w>\>/<C-r><C-w>/gc <bar> update<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
 nnoremap <Leader>S /\c\<<C-r><C-w>\><CR>
+nnoremap <Leader>* :Ggrep -w <C-r><C-w><CR><bar>:copen<CR>
+nnoremap <Leader>/ :Ggrep<Space>
+" Check cool option with grep: -i, -A, -B, -C, -r, -v...
+" Function to toggle the quickfix window
+command -bang -nargs=? QFix call QFixToggle(<bang>0)
+function! QFixToggle(forced)
+  if exists("g:qfix_win") && a:forced == 0
+    cclose
+    unlet g:qfix_win
+  else
+    copen 10
+    let g:qfix_win = bufnr("$")
+  endif
+endfunction
+nmap <silent> \ :QFix<CR>
 
 " Adjust tabs (==space) and removed trailing whitespaces
 nnoremap <Leader>ri m`<bar>:set expandtab<CR><bar>:retab!<CR><bar>:%s/\s\+$//e<CR><bar>gg=G``
@@ -267,10 +286,7 @@ endfunction
 
 "nnoremap <Leader>RR :call RefactorAllExceptBuild()<CR>
 nnoremap <Leader>RR :argadd **/*.cpp **/*.hpp <bar> :argdelete build/** <bar>:argdo %s/\<<C-r><C-w>\>//gc<bar>update<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
-"nnoremap <Leader>RR :argadd ./**/*.cpp ./**/*.hpp <bar> :argdelete /build/** <bar> :argdo %s/\<<C-r><C-w>\>//gc <bar> update<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
 
-" Search and replace in the local file
-nnoremap <Leader>rr :%s/\<<C-r><C-w>\>//gc <bar> update<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
 
 """"""""""""""""""""""""""""""""""""
 " CPP custom functions/mappings
@@ -337,6 +353,6 @@ syntax on
 " Disable automatic comment insertion
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 autocmd BufNewFile,BufRead *.launch  set syntax=xml
-autocmd QuickFixCmdPost *grep* cwindow
+autocmd QuickFixCmdPost *grep* copen
 autocmd VimEnter *  . call RemoveNERDCommenterMapping()
 autocmd VimEnter *  . call AddReplaceLineMapping()
