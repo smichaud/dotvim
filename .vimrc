@@ -143,9 +143,15 @@ map <F3> :UltiSnipsEdit<CR>
 
 " Fugitive and GitGutter setup
 "map <Leader>w :update<CR>
-map <Leader>gs :Gstatus<CR>
-map <Leader>gc :Gcommit<CR>
-map <Leader>gp :Gpush<CR>
+map <Leader>gits :Gstatus<CR>
+map <Leader>gitc :Git commit
+map <Leader>gitpl :Git pull
+map <Leader>gitps :Git push
+map <Leader>gita :Git add
+map <Leader>gitd :Git diff
+map <Leader>gitb :Git branch
+map <Leader>gitl :Git log
+map <Leader>gitb :Git blame
 map <F6> :GitGutterToggle<CR>
 let g:gitgutter_max_signs = 800
 
