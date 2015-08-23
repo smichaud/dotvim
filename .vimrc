@@ -97,8 +97,8 @@ let g:ctrlp_show_hidden = 1
 
 " EasyMotion setup
 let g:EasyMotion_do_mapping = 0
-nmap f <Plug>(easymotion-w)
-nmap s <Plug>(easymotion-s2)
+nmap <Leader>f <Plug>(easymotion-w)
+nmap <Leader>s <Plug>(easymotion-s2)
 
 " NERDCommenter setup
 nnoremap <Leader>/ :call NERDComment(0,"toggle")<CR>
@@ -126,12 +126,13 @@ let g:UltiSnipsEditSplit = "vertical"
 let g:UltiSnipsSnippetsDir = "~/.vim/bundle/snippets/UltiSnips/"
 map <F3> :UltiSnipsEdit<CR>
 
-" Fugitive setup
+" Fugitive and GitGutter setup
 "map <Leader>w :update<CR>
 map <Leader>gs :Gstatus<CR>
 map <Leader>gc :Gcommit<CR>
 map <Leader>gp :Gpush<CR>
 map <F6> :GitGutterToggle<CR>
+let g:gitgutter_max_signs = 800
 
 " FSwitch setup
 map <F4> :FSHere<CR>
