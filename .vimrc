@@ -10,12 +10,12 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'majutsushi/tagbar'
 Plugin 'SirVer/ultisnips'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-abolish'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'Raimondi/delimitMate'
 Plugin 'derekwyatt/vim-fswitch'
@@ -97,6 +97,9 @@ let g:NERDTreeShowHidden=1
 
 " Ctrlp setup
 let g:ctrlp_show_hidden = 1
+
+" Tagbar setup
+nmap <F2> :TagbarToggle<CR>
 
 " EasyMotion setup
 let g:EasyMotion_do_mapping = 0
