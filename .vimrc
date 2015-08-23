@@ -24,6 +24,9 @@ Plugin 'stefandtw/quickfix-reflector.vim'
 Plugin 'smichaud/vim-snippets'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'altercation/vim-colors-solarized'
+" Not plugins, but it is easier to manage with Vundle
+Plugin 'seebi/dircolors-solarized'
+Plugin 'Anthony25/gnome-terminal-colors-solarized'
 call vundle#end()
 
 filetype plugin indent on
