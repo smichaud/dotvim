@@ -2,6 +2,12 @@
 
 This repository contains my personal .vim folder.
 I currently use Vundle to manage plugins.
+```
+mkdir ~/.vim/bundle
+git clone VundleVim/Vundle.vim ~/.vim/bundle/Vundle.vim
+vim
+:PluginInstall
+```
 
 To get a list of all the key shortcuts use the :map and :map! commands.
 You can output them in a file with:
