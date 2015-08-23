@@ -142,16 +142,20 @@ let g:UltiSnipsSnippetsDir = "~/.vim/bundle/snippets/UltiSnips/"
 map <F3> :UltiSnipsEdit<CR>
 
 " Fugitive and GitGutter setup
-"map <Leader>w :update<CR>
 map <Leader>gits :Gstatus<CR>
-map <Leader>gitc :Git commit
-map <Leader>gitpl :Git pull
-map <Leader>gitps :Git push
+map <Leader>gitc :Gcommit
+map <Leader>gitf :Gfetch
+map <Leader>gitme :Gmerge
+map <Leader>gitpl :Gpull
+map <Leader>gitps :Gpush
 map <Leader>gita :Git add
-map <Leader>gitd :Git diff
-map <Leader>gitb :Git branch
-map <Leader>gitl :Git log
-map <Leader>gitb :Git blame
+map <Leader>gitr :Gremove
+map <Leader>gitmo :Gmove
+map <Leader>gitd :Gvdiff
+map <Leader>gitbr :Git branch
+map <Leader>gitl :Glog<CR>
+map <Leader>gitbl :Gblame<CR>
+map <Leader>gitw :Gbrowset<CR>
 map <F6> :GitGutterToggle<CR>
 let g:gitgutter_max_signs = 800
 
@@ -199,7 +203,10 @@ nmap <Leader>vv :set paste<cr>i<c-r>=protodef#ReturnSkeletonsFromPrototypesForCu
 " Custom remapping
 
 " Windows control via leader instead of ctrl
-nnoremap <Leader>w <C-W>
+ nnoremap <Leader>wh <C-W>h
+ nnoremap <Leader>wl <C-W>l
+ nnoremap <Leader>wj <C-W>j
+ nnoremap <Leader>wk <C-W>k
 
 " Faster copy/paste from clipboard
 noremap <Leader>y "+y
@@ -330,5 +337,6 @@ syntax on
 " Disable automatic comment insertion
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 autocmd BufNewFile,BufRead *.launch  set syntax=xml
+autocmd QuickFixCmdPost *grep* cwindow
 autocmd VimEnter *  . call RemoveNERDCommenterMapping()
 autocmd VimEnter *  . call AddReplaceLineMapping()
