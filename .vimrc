@@ -7,22 +7,28 @@ set rtp+=~/.vim/bundle/Vundle.vim
 
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
+
 Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
-Plugin 'Valloric/YouCompleteMe'
 Plugin 'majutsushi/tagbar'
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'SirVer/ultisnips'
+Plugin 'smichaud/vim-snippets'
+Plugin 'bling/vim-airline'
+
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'bling/vim-airline'
+
 Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'Raimondi/delimitMate'
+Plugin 'easymotion/vim-easymotion'
+
 Plugin 'derekwyatt/vim-fswitch'
 Plugin 'derekwyatt/vim-protodef'
 Plugin 'stefandtw/quickfix-reflector.vim'
-Plugin 'smichaud/vim-snippets'
-Plugin 'easymotion/vim-easymotion'
+Plugin 'bbchung/clighter'
+
 Plugin 'altercation/vim-colors-solarized'
 " Not plugins, but it is easier to manage with Vundle
 Plugin 'seebi/dircolors-solarized'
@@ -136,6 +142,10 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
 set tags=./tags;
 
+" Clighter setup
+let g:clighter_libclang_file = '/usr/lib/llvm-3.4/lib/libclang.so.1'
+let g:clighter_occurrences_mode = 1
+
 " Ultisnip setup
 let g:UltiSnipsExpandTrigger = "<C-J>"
 let g:UltiSnipsJumpForwardTrigger = "<C-J>"
@@ -216,7 +226,7 @@ colorscheme solarized
 
 " Protodef setup
 let g:disable_protodef_mapping=1
-nmap <Leader>vv :set paste<cr>i<c-r>=protodef#ReturnSkeletonsFromPrototypesForCurrentBuffer({})<cr><esc>='[:set nopaste<cr>
+nmap <Leader>rg :set paste<cr>i<c-r>=protodef#ReturnSkeletonsFromPrototypesForCurrentBuffer({})<cr><esc>='[:set nopaste<cr>
 
 """"""""""""""""""""""""""""""""""""
 " Custom remapping
