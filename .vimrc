@@ -100,8 +100,20 @@ let g:EasyMotion_do_mapping = 0
 nmap f <Plug>(easymotion-w)
 nmap s <Plug>(easymotion-s2)
 
-" NERDCommenter setup
-nnoremap <Leader>/ :call NERDComment(0,"toggle")<CR>
+" NERDCommenter setup (removed default mappings in ./after/plugin/MyMaps.vim)
+function RemoveNERDCommenterMapping()
+    unmap <Leader>cc
+    unmap <Leader>cn
+    unmap <Leader>c<Space>
+    unmap <Leader>cm
+    unmap <Leader>ci
+    unmap <Leader>c$
+    unmap <Leader>cA
+    unmap <Leader>cl
+    unmap <Leader>cb
+    unmap <Leader>cu
+endfunction
+nnoremap <Leader><Leader> :call NERDComment(0,"toggle")<CR>
 
 " YouCompleteMe setup
 "let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
@@ -187,9 +199,11 @@ noremap <Leader>P "+P
 noremap <Leader>d "+d
 
 " Faster delete without registry (wipe) and replacement
-"noremap <Leader>w "_d
+noremap <Leader>w "_d
 noremap <Leader>ciw "_diwP
-noremap <Leader>cc "_ddP
+function AddReplaceLineMapping()
+    noremap <Leader>cc "_ddO<ESC>P
+endfunction
 
 " Allow add remove line in normal mode
 nnoremap <silent><Leader>xo m`:silent +g/\m^\s*$/d<CR>``:noh<CR>
@@ -306,3 +320,5 @@ syntax on
 " Disable automatic comment insertion
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 autocmd BufNewFile,BufRead *.launch  set syntax=xml
+autocmd VimEnter *  . call RemoveNERDCommenterMapping()
+autocmd VimEnter *  . call AddReplaceLineMapping()
