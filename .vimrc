@@ -143,7 +143,7 @@ nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
 set tags=./tags;
 
 " Clighter setup
-let g:clighter_libclang_file = '/usr/lib/llvm-3.4/lib/libclang.so.1'
+let g:clighter_libclang_file = '/usr/lib/libclang.so'
 let g:clighter_occurrences_mode = 1
 
 " Ultisnip setup
