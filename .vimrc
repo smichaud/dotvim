@@ -65,8 +65,6 @@ set tabstop=4 shiftwidth=4 expandtab
 
 set scrolloff=999
 nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>
-nnoremap H <C-U>
-nnoremap L <C-D>
 
 set listchars=tab:▷-,trail:▫,eol:¬
 noremap <F7> :set list!<CR>
@@ -85,8 +83,10 @@ set laststatus=2
 set colorcolumn=80
 
 " Windows/Buffers settings
-map <C-J> <C-W>h<C-W>_
-map <C-K> <C-W>l<C-W>_
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
 map - <C-W>-
 map + <C-W>+
 set hidden " Remove warning when changing buffer w/o saving
@@ -147,9 +147,9 @@ let g:clighter_libclang_file = '/usr/lib/llvm-3.4/lib/libclang.so.1'
 let g:clighter_occurrences_mode = 1
 
 " Ultisnip setup
-let g:UltiSnipsExpandTrigger = "<C-J>"
-let g:UltiSnipsJumpForwardTrigger = "<C-J>"
-let g:UltiSnipsJumpBackwardTrigger = "<C-K>"
+let g:UltiSnipsExpandTrigger = "<C-Space>"
+let g:UltiSnipsJumpForwardTrigger = "<C-Space>"
+let g:UltiSnipsJumpBackwardTrigger = "<C-Backspace>"
 let g:UltiSnipsEditSplit = "vertical"
 let g:UltiSnipsSnippetsDir = "~/.vim/bundle/snippets/UltiSnips/"
 map <F3> :UltiSnipsEdit<CR>
@@ -401,6 +401,5 @@ syntax on
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 autocmd BufNewFile,BufRead *.launch  set syntax=xml
 autocmd QuickFixCmdPost *grep* copen
-autocmd QuickFixCmdPost *make* copen
 autocmd VimEnter *  . call RemoveNERDCommenterMapping()
 autocmd VimEnter *  . call AddReplaceLineMapping()
