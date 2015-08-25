@@ -125,7 +125,7 @@ function RemoveNERDCommenterMapping()
     unmap <Leader>cb
     unmap <Leader>cu
 endfunction
-nnoremap <Leader><Leader> :call NERDComment(0,"toggle")<CR>
+map <Leader><Leader> :call NERDComment(0,"toggle")<CR>
 
 " YouCompleteMe setup
 "let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
@@ -368,10 +368,28 @@ endfunction
 noremap <Leader>rem :call ExtractMethod()<CR>
 
 " Build commands
-nnoremap <Leader>bc :! (cd build/ && make)<CR>
-nnoremap <Leader>bC :! (cd build/ && cmake .. && make)<CR>
-nnoremap <Leader>brr :! (project=${PWD\#\#*/} && cd /home/smichaud/Workspace/CatkinWorkspace/ && catkin_make --pkg $project)<CR>
-nnoremap <Leader>brt :! (project=${PWD\#\#*/} && cd /home/smichaud/Workspace/CatkinWorkspace/ && catkin_make run_tests_$project)<CR>
+function SetMake(make_type)
+    if a:make_type ==? ''
+        set makeprg=cd\ ./build\ &&\ make
+        echo 'set makeprg=cd\ ./build\ &&\ make'
+    elseif a:make_type ==? 'cmake'
+        set makeprg=cd\ ./build\ cmake..\ &&\ make
+        echo 'set makeprg=cd\ ./build\ cmake..\ &&\ make'
+    elseif a:make_type ==? 'catkin'
+        let prefix = 'cd /home/smichaud/Workspace/CatkinWorkspace/ && catkin_make --pkg '
+        let project = input('Enter catkin project name: ')
+        let &makeprg=l:prefix . l:project
+    elseif a:make_type ==? 'rosmake'
+        let prefix = 'rosmake '
+        let project = input('Enter rosmake project name: ')
+        let &makeprg=l:prefix . l:project
+    endif
+endfunction
+
+nnoremap <Leader>bs :call SetMake("")<Left><Left>
+nnoremap <Leader>bb :make<CR>
+"nnoremap <Leader>brr :! (project=${PWD\#\#*/} && cd /home/smichaud/Workspace/CatkinWorkspace/ && catkin_make --pkg $project)<CR>
+"nnoremap <Leader>brt :! (project=${PWD\#\#*/} && cd /home/smichaud/Workspace/CatkinWorkspace/ && catkin_make run_tests_$project)<CR>
 nnoremap <Leader>bll :! pdflatex %<CR>
 nnoremap <Leader>blb :! pdflatex % && bibtex % && pdflatex %<CR>
 nnoremap <Leader>bL :! pdflatex
@@ -383,5 +401,6 @@ syntax on
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 autocmd BufNewFile,BufRead *.launch  set syntax=xml
 autocmd QuickFixCmdPost *grep* copen
+autocmd QuickFixCmdPost *make* copen
 autocmd VimEnter *  . call RemoveNERDCommenterMapping()
 autocmd VimEnter *  . call AddReplaceLineMapping()
