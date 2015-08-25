@@ -65,6 +65,8 @@ set tabstop=4 shiftwidth=4 expandtab
 
 set scrolloff=999
 nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>
+map H <C-u>
+map L <C-d>
 
 set listchars=tab:▷-,trail:▫,eol:¬
 noremap <F7> :set list!<CR>
@@ -87,6 +89,8 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
+map <C-v> <C-w>v
+map <C-s> <C-w>s
 map - <C-W>-
 map + <C-W>+
 set hidden " Remove warning when changing buffer w/o saving
