@@ -89,8 +89,8 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
-map <C-v> <C-w>v
-map <C-s> <C-w>s
+map <Leader>v <C-w>v
+map <Leader>s <C-w>s
 map - <C-W>-
 map + <C-W>+
 set hidden " Remove warning when changing buffer w/o saving
