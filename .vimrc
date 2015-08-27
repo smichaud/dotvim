@@ -155,7 +155,7 @@ let g:UltiSnipsExpandTrigger = "<C-Space>"
 let g:UltiSnipsJumpForwardTrigger = "<C-Space>"
 let g:UltiSnipsJumpBackwardTrigger = "<C-Backspace>"
 let g:UltiSnipsEditSplit = "vertical"
-let g:UltiSnipsSnippetsDir = "~/.vim/bundle/snippets/UltiSnips/"
+let g:UltiSnipsSnippetsDir = "~/.vim/bundle/vim-snippets/UltiSnips/"
 map <F3> :UltiSnipsEdit<CR>
 
 " Fugitive and GitGutter setup
