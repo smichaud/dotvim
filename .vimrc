@@ -53,7 +53,7 @@ set ttyfast
 
 set hlsearch
 set incsearch
-noremap <F8> :nohlsearch<CR>
+nmap <Leader>th :nohlsearch<CR>
 
 set history=100
 set showcmd
@@ -69,8 +69,8 @@ map H <C-u>
 map L <C-d>
 
 set listchars=tab:▷-,trail:▫,eol:¬
-noremap <F7> :set list!<CR>
-noremap <F12> :set spell!<CR>
+nmap <Leader>t<Space> :set list!<CR>
+nmap <Leader>ts :set spell!<CR>
 
 set relativenumber
 set nu
@@ -102,14 +102,14 @@ let g:fuzzy_ignore = "*.png;*.PNG;*.JPG;*.jpg;*.GIF;*.gif;vendor/**;coverage/**;
 " Configurations for plugins
 
 " NERDTree setup
-map <F10> :NERDTreeToggle<CR>
+nmap <Leader>tt :NERDTreeToggle<CR>
 let g:NERDTreeShowHidden=1
 
 " Ctrlp setup
 let g:ctrlp_show_hidden = 1
 
 " Tagbar setup
-nmap <F2> :TagbarToggle<CR>
+nmap <Leader>tb :TagbarToggle<CR>
 
 " EasyMotion setup
 let g:EasyMotion_do_mapping = 0
@@ -143,7 +143,6 @@ let g:ycm_complete_in_comments = 1
 let g:ycm_min_num_of_chars_for_completion = 1
 let g:ycm_use_ultisnips_completer = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
-nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
 set tags=./tags;
 
 " Clighter setup
@@ -156,7 +155,7 @@ let g:UltiSnipsJumpForwardTrigger = "<C-Space>"
 let g:UltiSnipsJumpBackwardTrigger = "<C-Backspace>"
 let g:UltiSnipsEditSplit = "vertical"
 let g:UltiSnipsSnippetsDir = "~/.vim/bundle/vim-snippets/UltiSnips/"
-map <F3> :UltiSnipsEdit<CR>
+nmap <Leader>ts :UltiSnipsEdit<CR>
 
 " Fugitive and GitGutter setup
 map <Leader>gits :Gstatus<CR>
@@ -173,11 +172,11 @@ map <Leader>gitbr :Git branch
 map <Leader>gitl :Glog<CR>
 map <Leader>gitbl :Gblame<CR>
 map <Leader>gitw :Gbrowset<CR>
-map <F6> :GitGutterToggle<CR>
+nmap <Leader>tg :GitGutterToggle<CR>
 let g:gitgutter_max_signs = 800
 
 " FSwitch setup
-map <F4> :FSHere<CR>
+nmap <Leader>tf :FSHere<CR>
 function GoToDefElseDec()
     let methodName=expand("<cword>")
     exe "normal :FSHere\<CR>"
@@ -218,7 +217,7 @@ let g:airline_symbols.paste = '∥'
 let g:airline_symbols.whitespace = 'Ξ'
 
 " Colors-Solarized setup
-call togglebg#map("<F9>")
+call togglebg#map("<F12>")
 set t_Co=16
 let g:solarized_termcolors=16
 let g:solarized_italic=1
