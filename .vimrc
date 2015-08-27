@@ -176,7 +176,7 @@ nmap <Leader>tg :GitGutterToggle<CR>
 let g:gitgutter_max_signs = 800
 
 " FSwitch setup
-nmap <Leader>tf :FSHere<CR>
+nmap <Leader>gf :FSHere<CR>
 function GoToDefElseDec()
     let methodName=expand("<cword>")
     exe "normal :FSHere\<CR>"
