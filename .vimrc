@@ -14,7 +14,10 @@ Plugin 'majutsushi/tagbar'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'SirVer/ultisnips'
 Plugin 'smichaud/vim-snippets'
+
 Plugin 'bling/vim-airline'
+Plugin 'moll/vim-bbye'
+Plugin 'stefandtw/quickfix-reflector.vim'
 
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
@@ -26,8 +29,9 @@ Plugin 'easymotion/vim-easymotion'
 
 Plugin 'derekwyatt/vim-fswitch'
 Plugin 'derekwyatt/vim-protodef'
-Plugin 'stefandtw/quickfix-reflector.vim'
 Plugin 'bbchung/clighter'
+
+Plugin 'lervag/vimtex'
 
 Plugin 'altercation/vim-colors-solarized'
 " Not plugins, but it is easier to manage with Vundle
@@ -187,7 +191,7 @@ nnoremap <Leader>gd :call GoToDefElseDec()<CR>
 " Airline setup
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_idx_mode = 1
-nnoremap <Leader>q :bd<CR>
+nnoremap <Leader>q :Bdelete<CR>
 nnoremap <Leader>j :bp<CR>
 nnoremap <Leader>k :bn<CR>
 nmap <leader>1 <Plug>AirlineSelectTab1
@@ -226,6 +230,16 @@ let g:solarized_underline=1
 syntax enable
 set background=dark
 colorscheme solarized
+
+" Vimtex setup
+let g:vimtex_mappings_enabled=0
+let g:vimtex_fold_enabled=0
+let g:vimtex_fold_preamble=0
+let g:vimtex_fold_sections=0
+let g:vimtex_latexmk_options='-pdf'
+let g:vimtex_view_general_viewer = 'okular'
+nmap <Leader>lv <plug>(vimtex-view)
+nmap <Leader>ll <plug>(vimtex-compile-toggle)
 
 " Protodef setup
 let g:disable_protodef_mapping=1
