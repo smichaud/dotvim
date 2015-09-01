@@ -281,7 +281,7 @@ nnoremap <silent><Leader>O :set paste<CR>m`O<Esc>``:set nopaste<CR>
 " Search and replace (can use :Ggrep and :grep)
 nnoremap <Leader>rr :%s/\<<C-r><C-w>\>/<C-r><C-w>/gc <bar> update<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
 nnoremap <Leader>S /\c\<<C-r><C-w>\><CR>
-nnoremap <Leader>* :Ggrep -w <C-r><C-w><CR><bar>:copen<CR>
+nnoremap <Leader>* :Ggrep -w <C-r><C-w><CR><bar>:botright copen<CR>
 nnoremap <Leader>/ :Ggrep<Space>
 " Check cool option with grep: -i, -A, -B, -C, -r, -v...
 " Function to toggle the quickfix window
@@ -291,7 +291,7 @@ function! QFixToggle(forced)
     cclose
     unlet g:qfix_win
   else
-    copen 10
+    botright copen 10
     let g:qfix_win = bufnr("$")
   endif
 endfunction
@@ -418,6 +418,6 @@ syntax on
 " Disable automatic comment insertion
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 autocmd BufNewFile,BufRead *.launch  set syntax=xml
-autocmd QuickFixCmdPost *grep* copen
+autocmd QuickFixCmdPost *grep* botright copen
 autocmd VimEnter *  . call RemoveNERDCommenterMapping()
 autocmd VimEnter *  . call AddReplaceLineMapping()
