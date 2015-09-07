@@ -338,6 +338,9 @@ nnoremap <Leader>RR :argadd **/*.cpp **/*.hpp <bar> :argdelete build/** <bar>:ar
 """"""""""""""""""""""""""""""""""""
 " CPP custom functions/mappings
 
+" Indent preprocessor directives
+set cinkeys=0{,0},0),:,!^F,o,O,e
+
 nnoremap <Leader>; A;<Esc>
 
 " New cpp class
@@ -392,7 +395,7 @@ function SetMake(make_type)
         echo 'set makeprg=cd\ ./build\ &&\ make'
     elseif a:make_type ==? 'cmake'
         set makeprg=cd\ ./build\ cmake..\ &&\ make
-        echo 'set makeprg=cd\ ./build\ cmake..\ &&\ make'
+        echo 'set makeprg=cd\ ./build\ cmake\ ..\ &&\ make'
     elseif a:make_type ==? 'catkin'
         let prefix = 'cd /home/smichaud/Workspace/CatkinWorkspace/ && catkin_make --pkg '
         let project = input('Enter catkin project name: ')
