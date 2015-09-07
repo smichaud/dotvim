@@ -11,6 +11,8 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
 Plugin 'majutsushi/tagbar'
+Plugin 'christoomey/vim-tmux-navigator'
+
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'SirVer/ultisnips'
 Plugin 'smichaud/vim-snippets'
@@ -89,12 +91,8 @@ set laststatus=2
 set colorcolumn=80
 
 " Windows/Buffers settings
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
-map <Leader>v <C-w>v
-map <Leader>s <C-w>s
+map <Leader><bar> <C-w>v
+map <Leader>- <C-w>s
 map - <C-W>-
 map + <C-W>+
 set hidden " Remove warning when changing buffer w/o saving
@@ -114,6 +112,13 @@ let g:ctrlp_show_hidden = 1
 
 " Tagbar setup
 nmap <Leader>tb :TagbarToggle<CR>
+
+" Tmux-navigator setup
+let g:tmux_navigator_no_mappings = 1
+nnoremap <silent> <C-h> :TmuxNavigateLeft<CR>
+nnoremap <silent> <C-j> :TmuxNavigateDown<CR>
+nnoremap <silent> <C-k> :TmuxNavigateUp<CR>
+nnoremap <silent> <C-l> :TmuxNavigateRight<CR>
 
 " EasyMotion setup
 let g:EasyMotion_do_mapping = 0
