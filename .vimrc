@@ -347,6 +347,8 @@ nnoremap <Leader>RR :argadd **/*.cpp **/*.hpp <bar> :argdelete build/** <bar>:ar
 set cinkeys=0{,0},0),:,!^F,o,O,e
 
 nnoremap <Leader>; A;<Esc>
+nnoremap <Leader>{ $xa<space>{<Esc>
+nnoremap <Leader>} $xa<space>{<Enter>}<Esc>
 
 " New cpp class
 function NewCppClass(path_name)
