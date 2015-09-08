@@ -122,8 +122,7 @@ nnoremap <silent> <C-l> :TmuxNavigateRight<CR>
 
 " EasyMotion setup
 let g:EasyMotion_do_mapping = 0
-nmap <Leader>f <Plug>(easymotion-w)
-nmap <Leader>s <Plug>(easymotion-s2)
+nmap <Leader>f <Plug>(easymotion-bd-w)
 
 " NERDCommenter setup (removed default mappings in ./after/plugin/MyMaps.vim)
 function RemoveNERDCommenterMapping()
