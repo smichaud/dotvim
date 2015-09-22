@@ -237,6 +237,7 @@ set background=dark
 colorscheme solarized
 
 " Vimtex setup
+let g:tex_flavor = "latex"
 let g:vimtex_mappings_enabled=0
 let g:vimtex_fold_enabled=0
 let g:vimtex_fold_preamble=0
