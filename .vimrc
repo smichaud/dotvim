@@ -243,10 +243,11 @@ let g:vimtex_fold_enabled=0
 let g:vimtex_fold_preamble=0
 let g:vimtex_fold_sections=0
 let g:vimtex_quickfix_mode=0
-let g:vimtex_view_general_viewer = 'okular'
 let g:vimtex_latexmk_options='-pdf -f'
 let g:vimtex_latexmk_build_dir='build'
 let g:vimtex_view_general_viewer = 'okular'
+let g:vimtex_view_general_options = '--unique @pdf\#src:@line@tex'
+let g:vimtex_view_general_options_latexmk = '--unique'
 nmap <Leader>lv <plug>(vimtex-view)
 nmap <Leader>ll <plug>(vimtex-compile-toggle)
 nmap <Leader>le <plug>(vimtex-errors)
