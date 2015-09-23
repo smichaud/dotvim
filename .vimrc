@@ -76,7 +76,7 @@ map L <C-d>
 
 set listchars=tab:▷-,trail:▫,eol:¬
 nmap <Leader>t<Space> :set list!<CR>
-nmap <Leader>ts :set spell!<CR>
+nmap <Leader>tc :set spell!<CR>
 
 set relativenumber
 set nu
