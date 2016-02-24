@@ -81,6 +81,7 @@ nmap <Leader>tc :set spell!<CR>
 set relativenumber
 set nu
 set ruler
+nnoremap <Leader>tn :set relativenumber!<CR><Bar>:set number!<CR>
 
 set wildmenu
 
