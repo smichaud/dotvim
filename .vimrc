@@ -12,33 +12,44 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'easymotion/vim-easymotion'
 
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'SirVer/ultisnips'
 Plugin 'smichaud/vim-snippets'
 
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'moll/vim-bbye'
 Plugin 'stefandtw/quickfix-reflector.vim'
 
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 
-Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'tpope/vim-surround'
 Plugin 'Raimondi/delimitMate'
-Plugin 'easymotion/vim-easymotion'
+
+Plugin 'gregsexton/MatchTag'
+Plugin 'alvan/vim-closetag'
+Plugin 'tmhedberg/matchit'
+
+Plugin 'pangloss/vim-javascript'
+
+"Plugin 'vim-scripts/indentpython.vim'
+"Plugin 'davidhalter/jedi-vim'
+"Plugin 'python-rope/ropevim'
+"Plugin 'scrooloose/syntastic'
+"Plugin 'nvie/vim-flake8'
+Plugin 'klen/python-mode'
 
 Plugin 'derekwyatt/vim-fswitch'
 Plugin 'derekwyatt/vim-protodef'
-Plugin 'bbchung/clighter'
+"Plugin 'bbchung/clighter'
 
-Plugin 'lervag/vimtex'
+" Plugin 'lervag/vimtex'
 
 Plugin 'altercation/vim-colors-solarized'
-" Not plugins, but it is easier to manage with Vundle
-Plugin 'seebi/dircolors-solarized'
-Plugin 'Anthony25/gnome-terminal-colors-solarized'
 call vundle#end()
 
 filetype plugin indent on
@@ -54,6 +65,7 @@ set fileencoding=utf-8
 
 set notimeout "To prevent the timeout on the leader key
 set ttimeout "To prevent the timeout on the leader key
+set title
 
 set ttyfast
 
@@ -107,12 +119,16 @@ let g:fuzzy_ignore = "*.png;*.PNG;*.JPG;*.jpg;*.GIF;*.gif;vendor/**;coverage/**;
 " NERDTree setup
 nmap <Leader>tt :NERDTreeToggle<CR>
 let g:NERDTreeShowHidden=1
+let g:NERDTreeQuitOnOpen = 0
 
 " Ctrlp setup
 let g:ctrlp_show_hidden = 1
 
 " Tagbar setup
 nmap <Leader>tb :TagbarToggle<CR>
+let g:tagbar_ctags_bin = '/home/smichaud/Programs/ctags-5.8/ctags'
+let g:tagbar_sort = 0
+let g:tagbar_width = 26
 
 " Tmux-navigator setup
 let g:tmux_navigator_no_mappings = 1
@@ -134,6 +150,7 @@ map <Leader><Leader> :call NERDComment(0,"toggle")<CR>
 let g:ycm_filetype_blacklist = {}
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_key_list_select_completion = ["<tab>", "<Down>"]
 let g:ycm_key_list_previous_completion = ["<C-tab>", "<Up>"]
 let g:SuperTabDefaultCompletionType = "<tab>"
@@ -149,8 +166,8 @@ let g:clighter_occurrences_mode = 1
 
 " Ultisnip setup
 let g:UltiSnipsExpandTrigger = "<C-Space>"
-let g:UltiSnipsJumpForwardTrigger = "<C-Space>"
-let g:UltiSnipsJumpBackwardTrigger = "<C-Backspace>"
+let g:UltiSnipsJumpForwardTrigger = "<C-J>"
+let g:UltiSnipsJumpBackwardTrigger = "<C-K>"
 let g:UltiSnipsEditSplit = "vertical"
 let g:UltiSnipsSnippetsDir = "~/.vim/bundle/vim-snippets/UltiSnips/"
 nmap <Leader>ts :UltiSnipsEdit<CR>
@@ -181,7 +198,8 @@ function GoToDefElseDec()
     exe "normal :FSHere\<CR>"
     exe "normal /" . methodName . "\<CR>"
 endfunction
-nnoremap <Leader>gd :call GoToDefElseDec()<CR>
+"nnoremap <Leader>gd :call GoToDefElseDec()<CR>
+map <leader>gd  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " Airline setup
 let g:airline#extensions#tabline#enabled = 1
@@ -214,6 +232,8 @@ let g:airline_symbols.paste = 'ρ'
 let g:airline_symbols.paste = 'Þ'
 let g:airline_symbols.paste = '∥'
 let g:airline_symbols.whitespace = 'Ξ'
+let g:airline_theme='light'
+let g:solarized_base16 = 1
 
 " Colors-Solarized setup
 call togglebg#map("<F12>")
@@ -223,7 +243,7 @@ let g:solarized_italic=1
 let g:solarized_bold=1
 let g:solarized_underline=1
 syntax enable
-set background=dark
+set background=light
 colorscheme solarized
 
 " Vimtex setup
@@ -241,6 +261,14 @@ let g:vimtex_view_general_options_latexmk = '--unique'
 nmap <Leader>lv <plug>(vimtex-view)
 nmap <Leader>ll <plug>(vimtex-compile-toggle)
 nmap <Leader>le <plug>(vimtex-errors)
+
+" HTML
+let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.xml,*.js"
+au FileType xml,html,phtml,xhtml,js let b:delimitMate_matchpairs = "(:),[:],{:}"
+
+" Javascript
+let g:javascript_plugin_jsdoc = 1
+let g:javascript_plugin_ngdoc = 1
 
 " Protodef setup
 let g:disable_protodef_mapping=1
@@ -334,6 +362,32 @@ nnoremap <Leader>RR :argadd **/*.cpp **/*.hpp <bar> :argdelete build/** <bar>:ar
 
 
 """"""""""""""""""""""""""""""""""""
+" Python custom functions/mappings
+
+let g:ycm_python_binary_path = '/usr/bin/python3'
+
+" Python-mode
+let g:pymode = 1
+let g:pymode_folding = 0
+let g:pymode_rope_completion_bind = ''
+
+" Jedi deactivate most stuff (keep for function param completion)
+"let g:jedi#auto_vim_configuration = 0
+"let g:jedi#popup_on_dot = 0
+"let g:jedi#popup_select_first = 0
+"let g:jedi#completions_enabled = 0
+"let g:jedi#completions_command = ""
+"let g:jedi#show_call_signatures = "1"
+
+"let g:jedi#goto_assignments_command = "<leader>pa"
+"let g:jedi#goto_definitions_command = "<leader>pd"
+"let g:jedi#documentation_command = "<leader>pk"
+"let g:jedi#usages_command = "<leader>pu"
+"let g:jedi#rename_command = "<leader>pr"
+"let python_highlight_all=1
+syntax on
+
+""""""""""""""""""""""""""""""""""""
 " CPP custom functions/mappings
 
 " Indent preprocessor directives
@@ -391,11 +445,11 @@ noremap <Leader>rem :call ExtractMethod()<CR>
 " Build commands
 function SetMake(make_type)
     if a:make_type ==? ''
-        set makeprg=cd\ ./build\ &&\ make
-        echo 'set makeprg=cd\ ./build\ &&\ make'
+        set makeprg=cd\ ./build\ cmake..\ &&\ make\ -j8
+        echo 'set makeprg=cd\ ./build\ cmake\ ..\ &&\ make\ -j8'
     elseif a:make_type ==? 'cmake'
-        set makeprg=cd\ ./build\ cmake..\ &&\ make
-        echo 'set makeprg=cd\ ./build\ cmake\ ..\ &&\ make'
+        set makeprg=cd\ ./build\ cmake..\ &&\ make\ -j8
+        echo 'set makeprg=cd\ ./build\ cmake\ ..\ &&\ make\ -j8'
     elseif a:make_type ==? 'catkin'
         let prefix = 'cd /home/smichaud/Workspace/CatkinWorkspace/ && catkin_make --pkg '
         let project = input('Enter catkin project name: ')
