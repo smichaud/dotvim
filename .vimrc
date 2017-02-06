@@ -408,13 +408,13 @@ function NewCppClass(path_and_class_name)
     let path = substitute(a:path_and_class_name, class_name . "$", "", "")
     "exe ":e" a:path_and_class_name . ".cpp"
     exe ":e" path . tolower(class_name) . ".cpp"
-    exe "normal i#include \"" . tolower(class_name) . ".hpp\"\<CR>\<CR>\<Esc>"
+    exe "normal i#include \"" . tolower(class_name) . ".hpp\"\<CR>\<CR>\<CR>\<Esc>"
     exe "normal i" .  class_name . "::" . class_name . "() {\<CR>}\<CR>\<Esc>"
 
     "exe ":e" a:path_and_class_name . ".hpp"
     exe ":e" path . tolower(class_name) . ".hpp"
     exe "normal i#ifndef " . toupper(class_name) . "_H\<CR>\<Esc>"
-    exe "normal i#define " . toupper(class_name) . "_H\<CR>\<CR>\<Esc>"
+    exe "normal i#define " . toupper(class_name) . "_H\<CR>\<CR>\<CR>\<Esc>"
     exe "normal iclass " . class_name . " {\<CR>\<Esc>"
     exe "normal iprivate:\<CR>\<Esc>"
     exe "normal i\<Tab>\<Tab>// Private variables\<CR>\<Esc>"
