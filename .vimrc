@@ -235,6 +235,10 @@ let g:airline_symbols.whitespace = 'Ξ'
 let g:airline_theme='light'
 let g:solarized_base16 = 1
 
+" Quickfix-reflector
+let g:qf_modifiable = 1
+let g:qf_write_changes = 1
+
 " Colors-Solarized setup
 call togglebg#map("<F12>")
 set t_Co=16
@@ -308,7 +312,8 @@ nnoremap <silent><Leader>O :set paste<CR>m`O<Esc>``:set nopaste<CR>
 nnoremap <Leader>rr :%s/\<<C-r><C-w>\>/<C-r><C-w>/gc <bar> update<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
 nnoremap <Leader>S /\c\<<C-r><C-w>\><CR>
 nnoremap <Leader>* :Ggrep -w <C-r><C-w><CR><bar>:botright copen<CR>
-nnoremap <Leader>/ :Ggrep<Space>
+nnoremap <Leader>/g :Ggrep<Space>
+nnoremap <Leader>// :grep -r --include=*.{cpp,hpp} "" .<Left><Left><Left>
 " Check cool option with grep: -i, -A, -B, -C, -r, -v...
 " Function to toggle the quickfix window
 command -bang -nargs=? QFix call QFixToggle(<bang>0)
@@ -398,13 +403,16 @@ nnoremap <Leader>{ $xa<space>{<Esc>
 nnoremap <Leader>} $xa<space>{<Enter>}<Esc>
 
 " New cpp class
-function NewCppClass(path_name)
-    let class_name = substitute(a:path_name, "^.*\/", "", "")
-    exe ":e" a:path_name . ".cpp"
-    exe "normal i#include \"" . class_name . ".hpp\"\<CR>\<CR>\<Esc>"
+function NewCppClass(path_and_class_name)
+    let class_name = substitute(a:path_and_class_name, "^.*\/", "", "")
+    let path = substitute(a:path_and_class_name, class_name . "$", "", "")
+    "exe ":e" a:path_and_class_name . ".cpp"
+    exe ":e" path . tolower(class_name) . ".cpp"
+    exe "normal i#include \"" . tolower(class_name) . ".hpp\"\<CR>\<CR>\<Esc>"
     exe "normal i" .  class_name . "::" . class_name . "() {\<CR>}\<CR>\<Esc>"
 
-    exe ":e" a:path_name . ".hpp"
+    "exe ":e" a:path_and_class_name . ".hpp"
+    exe ":e" path . tolower(class_name) . ".hpp"
     exe "normal i#ifndef " . toupper(class_name) . "_H\<CR>\<Esc>"
     exe "normal i#define " . toupper(class_name) . "_H\<CR>\<CR>\<Esc>"
     exe "normal iclass " . class_name . " {\<CR>\<Esc>"
