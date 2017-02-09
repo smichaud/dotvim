@@ -119,10 +119,10 @@ let g:fuzzy_ignore = "*.png;*.PNG;*.JPG;*.jpg;*.GIF;*.gif;vendor/**;coverage/**;
 " NERDTree setup
 nmap <Leader>tt :NERDTreeToggle<CR>
 let g:NERDTreeShowHidden=1
-let g:NERDTreeQuitOnOpen = 0
+let g:NERDTreeQuitOnOpen=0
 
 " Ctrlp setup
-let g:ctrlp_show_hidden = 1
+let g:ctrlp_show_hidden=1
 
 " Tagbar setup
 nmap <Leader>tb :TagbarToggle<CR>
@@ -484,3 +484,6 @@ syntax on
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 autocmd BufNewFile,BufRead *.launch  set syntax=xml
 autocmd QuickFixCmdPost *grep* botright copen
+" Auto open nerdtree
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTreeToggle | endif
