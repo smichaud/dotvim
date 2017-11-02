@@ -8,46 +8,60 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
+" Read the project .editorconfig file and apply rules
+Plugin 'editorconfig/editorconfig-vim'
+
 Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
 Plugin 'majutsushi/tagbar'
-Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'easymotion/vim-easymotion'
+
+" Move between windows with c+hjkl
+Plugin 'christoomey/vim-tmux-navigator'
 
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'SirVer/ultisnips'
 Plugin 'smichaud/vim-snippets'
 
+" Improved status bar (bottom)
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+
+" Delete buffer without closing windows (leader+q)
 Plugin 'moll/vim-bbye'
+" Apply changes directly from quickfix window
 Plugin 'stefandtw/quickfix-reflector.vim'
 
+" Git wrapper
 Plugin 'tpope/vim-fugitive'
+" Git changes display in the 'gutter' on the left with line numbers
 Plugin 'airblade/vim-gitgutter'
 
+" Comment with leader+leader
 Plugin 'scrooloose/nerdcommenter'
+" Tool to quickly change surrounding parentheses, brackets, quotes, XML tags...
 Plugin 'tpope/vim-surround'
+" Autoclose quotes, parentheses, brackets...
 Plugin 'Raimondi/delimitMate'
 
+" Highlight enclosing tags
 Plugin 'gregsexton/MatchTag'
+" Autoclose html/xml tags
 Plugin 'alvan/vim-closetag'
+" Extend the % operator to tag
 Plugin 'tmhedberg/matchit'
 
+" Javascript highlighting and improved indentation
 Plugin 'pangloss/vim-javascript'
 
-"Plugin 'vim-scripts/indentpython.vim'
-"Plugin 'davidhalter/jedi-vim'
-"Plugin 'python-rope/ropevim'
-"Plugin 'scrooloose/syntastic'
-"Plugin 'nvie/vim-flake8'
+" A bunch of utilities for Python
 Plugin 'klen/python-mode'
 
-Plugin 'derekwyatt/vim-fswitch'
-Plugin 'derekwyatt/vim-protodef'
+"Plugin 'derekwyatt/vim-fswitch'
+"Plugin 'derekwyatt/vim-protodef'
 "Plugin 'bbchung/clighter'
 
-" Plugin 'lervag/vimtex'
+"Plugin 'lervag/vimtex'
 
 Plugin 'altercation/vim-colors-solarized'
 call vundle#end()
@@ -110,16 +124,22 @@ map - <C-W>-
 map + <C-W>+
 set hidden " Remove warning when changing buffer w/o saving
 
+set directory=$HOME/.vim/swapfiles//
+
 " Fuzzy finder: ignore stuff that can't be opened, and generated files
 let g:fuzzy_ignore = "*.png;*.PNG;*.JPG;*.jpg;*.GIF;*.gif;vendor/**;coverage/**;tmp/**;rdoc/**"
 
 """"""""""""""""""""""""""""""""""""
 " Configurations for plugins
 
+" editorconfig
+let g:EditorConfig_exclude_patterns = ['fugitive://.*']
+
 " NERDTree setup
 nmap <Leader>tt :NERDTreeToggle<CR>
 let g:NERDTreeShowHidden=1
 let g:NERDTreeQuitOnOpen=0
+let g:NERDTreeIgnore=['\.swp$']
 
 " Ctrlp setup
 let g:ctrlp_show_hidden=1
@@ -207,6 +227,7 @@ let g:airline#extensions#tabline#buffer_idx_mode = 1
 nnoremap <Leader>q :Bdelete<CR>
 nnoremap <Leader>j :bp<CR>
 nnoremap <Leader>k :bn<CR>
+nnoremap <Leader><tab> :e#<CR>
 nmap <leader>1 <Plug>AirlineSelectTab1
 nmap <leader>2 <Plug>AirlineSelectTab2
 nmap <leader>3 <Plug>AirlineSelectTab3
@@ -375,6 +396,7 @@ let g:ycm_python_binary_path = '/usr/bin/python3'
 let g:pymode = 1
 let g:pymode_folding = 0
 let g:pymode_rope_completion_bind = ''
+let g:pymode_lint_cwindow = 0
 
 " Jedi deactivate most stuff (keep for function param completion)
 "let g:jedi#auto_vim_configuration = 0
