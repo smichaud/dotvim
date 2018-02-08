@@ -61,7 +61,7 @@ Plugin 'klen/python-mode'
 "Plugin 'derekwyatt/vim-protodef'
 "Plugin 'bbchung/clighter'
 
-"Plugin 'lervag/vimtex'
+Plugin 'lervag/vimtex'
 
 Plugin 'altercation/vim-colors-solarized'
 call vundle#end()
@@ -143,6 +143,7 @@ let g:NERDTreeIgnore=['\.swp$']
 
 " Ctrlp setup
 let g:ctrlp_show_hidden=1
+let g:ctrlp_custom_ignore = 'node_modules\|git'
 
 " Tagbar setup
 nmap <Leader>tb :TagbarToggle<CR>
@@ -209,6 +210,7 @@ map <Leader>gitbl :Gblame<CR>
 map <Leader>gitw :Gbrowset<CR>
 nmap <Leader>tg :GitGutterToggle<CR>
 let g:gitgutter_max_signs = 800
+set diffopt+=vertical
 
 " FSwitch setup
 nmap <F4> :FSHere<CR>
@@ -273,19 +275,24 @@ colorscheme solarized
 
 " Vimtex setup
 let g:tex_flavor = "latex"
-let g:vimtex_mappings_enabled=0
-let g:vimtex_fold_enabled=0
-let g:vimtex_fold_preamble=0
-let g:vimtex_fold_sections=0
-let g:vimtex_quickfix_mode=0
-let g:vimtex_latexmk_options='-pdf -f'
-let g:vimtex_latexmk_build_dir='build'
-let g:vimtex_view_general_viewer = 'okular'
-let g:vimtex_view_general_options = '--unique @pdf\#src:@line@tex'
-let g:vimtex_view_general_options_latexmk = '--unique'
-nmap <Leader>lv <plug>(vimtex-view)
-nmap <Leader>ll <plug>(vimtex-compile-toggle)
-nmap <Leader>le <plug>(vimtex-errors)
+let g:vimtex_quickfix_autojump = 0
+let g:vimtex_quickfix_mode = 0
+let g:vimtex_compiler_latexmk = {
+        \ 'background' : 1,
+        \ 'build_dir' : 'build',
+        \ 'callback' : 1,
+        \ 'continuous' : 1,
+        \ 'executable' : 'latexmk',
+        \ 'options' : [
+        \   '-pdf',
+        \   '-verbose',
+        \   '-file-line-error',
+        \   '-synctex=1',
+        \   '-interaction=nonstopmode',
+        \ ],
+        \}
+
+nnoremap <Leader>ll :VimtexCompile<CR>
 
 " HTML
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.xml,*.js"
