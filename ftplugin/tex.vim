@@ -1,0 +1,3 @@
+" Check cool option with grep: -i, -A, -B, -C, -r, -v...
+nnoremap <Leader>// :grep -r --include=*.{tex} "" .<Left><Left><Left>
+
