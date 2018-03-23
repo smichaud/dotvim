@@ -83,6 +83,8 @@ set title
 
 set ttyfast
 
+set ignorecase
+set smartcase
 set hlsearch
 set incsearch
 nmap <Leader>th :nohlsearch<CR>
@@ -340,7 +342,7 @@ nnoremap <silent><Leader>O :set paste<CR>m`O<Esc>``:set nopaste<CR>
 nnoremap <Leader>rr :%s/\<<C-r><C-w>\>/<C-r><C-w>/gc <bar> update<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
 nnoremap <Leader>S /\c\<<C-r><C-w>\><CR>
 nnoremap <Leader>* :Ggrep -w <C-r><C-w><CR><bar>:botright copen<CR>
-nnoremap <Leader>/g :Ggrep<Space>
+nnoremap <Leader>// :Ggrep<Space>
 " Function to toggle the quickfix window
 command -bang -nargs=? QFix call QFixToggle(<bang>0)
 function! QFixToggle(forced)
