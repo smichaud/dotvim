@@ -53,7 +53,10 @@ Plugin 'tmhedberg/matchit'
 
 " Javascript highlighting and improved indentation
 Plugin 'pangloss/vim-javascript'
-
+Plugin 'mxw/vim-jsx'
+Plugin 'mattn/emmet-vim'
+Plugin 'w0rp/ale'
+ 
 " A bunch of utilities for Python
 Plugin 'klen/python-mode'
 
@@ -303,6 +306,9 @@ au FileType xml,html,phtml,xhtml,js let b:delimitMate_matchpairs = "(:),[:],{:}"
 " Javascript
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_ngdoc = 1
+
+let g:user_emmet_expandabbr_key = "<C-e>"
+let g:ale_set_quickfix = 1
 
 " Protodef setup
 let g:disable_protodef_mapping=1
