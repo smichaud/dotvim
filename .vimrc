@@ -65,6 +65,7 @@ Plugin 'klen/python-mode'
 "Plugin 'bbchung/clighter'
 
 Plugin 'lervag/vimtex'
+Plugin 'suan/vim-instant-markdown'
 
 Plugin 'altercation/vim-colors-solarized'
 call vundle#end()
@@ -298,6 +299,8 @@ let g:vimtex_compiler_latexmk = {
         \}
 
 nnoremap <Leader>ll :VimtexCompile<CR>
+
+" Markdown setup
 
 " HTML
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.xml,*.js"
