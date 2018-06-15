@@ -55,6 +55,8 @@ Plugin 'tmhedberg/matchit'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'mattn/emmet-vim'
+
+" Asynchronous Lint Engine
 Plugin 'w0rp/ale'
  
 " A bunch of utilities for Python
@@ -145,7 +147,8 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 nmap <Leader>tt :NERDTreeToggle<CR>
 let g:NERDTreeShowHidden=1
 let g:NERDTreeQuitOnOpen=0
-let g:NERDTreeIgnore=['\.swp$']
+set wildignore+=*.pyc,*swp,*.DS_Store,*__pycache__,*node_modules*,*.pytest_cache*,*.git
+let NERDTreeRespectWildIgnore=1
 
 " Ctrlp setup
 let g:ctrlp_show_hidden=1
@@ -298,7 +301,7 @@ let g:vimtex_compiler_latexmk = {
         \ ],
         \}
 
-nnoremap <Leader>ll :VimtexCompile<CR>
+nnoremap <Leader>bl :VimtexCompile<CR>
 
 " Markdown setup
 
@@ -312,6 +315,12 @@ let g:javascript_plugin_ngdoc = 1
 
 let g:user_emmet_expandabbr_key = "<C-e>"
 let g:ale_set_quickfix = 1
+
+" Asynchronous Lint Engine
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_save = 1
+nmap <leader>ll :ALELint<CR>
 
 " Protodef setup
 let g:disable_protodef_mapping=1
@@ -385,9 +394,23 @@ let g:ycm_python_binary_path = '/usr/bin/python3'
 
 " Python-mode
 let g:pymode = 1
+let g:pymode_rope_map_space = 0
 let g:pymode_folding = 0
 let g:pymode_rope_completion_bind = ''
 let g:pymode_lint_cwindow = 0
+
+let g:pymode_run_bind = '<leader><F8>'
+let g:pymode_breakpoint_bind = '<leader><F8>'
+let g:pymode_rope_show_doc_bind = '<leader><F8>'
+let g:pymode_rope_goto_definition_bind = '<leader><F8>'
+let g:pymode_rope_goto_definition_cmd = '<leader><F8>'
+let g:pymode_rope_rename_bind = '<leader><F8>'
+let g:pymode_rope_module_to_package_bind = '<leader><F8>'
+let g:pymode_rope_extract_method_bind = '<leader><F8>'
+let g:pymode_rope_extract_variable_bind = '<leader><F8>'
+let g:pymode_rope_use_function_bind = '<leader><F8>'
+let g:pymode_rope_move_bind = '<leader><F8>'
+let g:pymode_rope_change_signature_bind = '<leader><F8>'
 
 " Jedi deactivate most stuff (keep for function param completion)
 "let g:jedi#auto_vim_configuration = 0
@@ -412,9 +435,9 @@ nnoremap <Leader>; A;<Esc>
 nnoremap <Leader>{ $xa<space>{<Esc>
 nnoremap <Leader>} $xa<space>{<Enter>}<Esc>
 
-nnoremap <Leader>bll :! pdflatex %<CR>
-nnoremap <Leader>blb :! pdflatex % && bibtex % && pdflatex %<CR>
-nnoremap <Leader>bL :! pdflatex
+"nnoremap <Leader>bll :! pdflatex %<CR>
+"nnoremap <Leader>blb :! pdflatex % && bibtex % && pdflatex %<CR>
+"nnoremap <Leader>bL :! pdflatex
 
 """"""""""""""""""""""""""""""""""""
 " Allow plugins
