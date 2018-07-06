@@ -347,7 +347,7 @@ noremap <Leader>d "+d
 
 " Faster delete without registry (wipe) and replacement
 noremap <Leader>w "_d
-noremap <Leader>ciw "_diwP
+noremap <Leader>ciw "_diwp
 noremap <Leader>cc "_ddO<ESC>P
 
 " Allow add remove line in normal mode
