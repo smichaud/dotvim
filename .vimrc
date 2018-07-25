@@ -61,6 +61,7 @@ Plugin 'w0rp/ale'
  
 " A bunch of utilities for Python
 Plugin 'klen/python-mode'
+"Plugin 'ambv/black' # Would require vim built with python 3.6
 
 "Plugin 'derekwyatt/vim-fswitch'
 "Plugin 'derekwyatt/vim-protodef'
@@ -123,7 +124,10 @@ set splitbelow
 set splitright
 
 set laststatus=2
-set colorcolumn=80
+set colorcolumn=89
+
+" Update files automatically when changed externally
+set autoread | au CursorHold * checktime | call feedkeys("lh")
 
 " Windows/Buffers settings
 map <Leader><bar> <C-w>v
@@ -149,6 +153,7 @@ let g:NERDTreeShowHidden=1
 let g:NERDTreeQuitOnOpen=0
 set wildignore+=*.pyc,*swp,*.DS_Store,*__pycache__,*node_modules*,*.pytest_cache*,*.git
 let NERDTreeRespectWildIgnore=1
+let g:NERDTreeWinSize=40
 
 " Ctrlp setup
 let g:ctrlp_show_hidden=1
