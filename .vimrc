@@ -124,7 +124,7 @@ set splitbelow
 set splitright
 
 set laststatus=2
-set colorcolumn=89
+set colorcolumn=81
 
 " Update files automatically when changed externally
 set autoread | au CursorHold * checktime | call feedkeys("lh")
