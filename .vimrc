@@ -61,7 +61,6 @@ Plugin 'w0rp/ale'
  
 " A bunch of utilities for Python
 Plugin 'klen/python-mode'
-"Plugin 'ambv/black' # Would require vim built with python 3.6
 
 "Plugin 'derekwyatt/vim-fswitch'
 "Plugin 'derekwyatt/vim-protodef'
@@ -95,6 +94,8 @@ set smartcase
 set hlsearch
 set incsearch
 nmap <Leader>th :nohlsearch<CR>
+
+nmap <Leader>a @a
 
 set history=100
 set showcmd
@@ -130,8 +131,8 @@ set colorcolumn=81
 set autoread | au CursorHold * checktime | call feedkeys("lh")
 
 " Windows/Buffers settings
-map <Leader><bar> <C-w>v
-map <Leader>- <C-w>s
+map <Leader>sv <C-w>v
+map <Leader>sh <C-w>s
 map - <C-W>-
 map + <C-W>+
 set hidden " Remove warning when changing buffer w/o saving
@@ -148,10 +149,13 @@ let g:fuzzy_ignore = "*.png;*.PNG;*.JPG;*.jpg;*.GIF;*.gif;vendor/**;coverage/**;
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
 " NERDTree setup
-nmap <Leader>tt :NERDTreeToggle<CR>
+nmap <Leader>tt :echom "Use Alt+1 now !"<CR>
+" The execute command is required to use alt... see stackoverflow
+execute "set <M-t>=\et"
+map <M-t> :NERDTreeToggle<CR>
 let g:NERDTreeShowHidden=1
 let g:NERDTreeQuitOnOpen=0
-set wildignore+=*.pyc,*swp,*.DS_Store,*__pycache__,*node_modules*,*.pytest_cache*,*.git
+set wildignore+=*.pyc,*swp,*.DS_Store,*__pycache__,*node_modules*,*.pytest_cache*,*.git,.idea*
 let NERDTreeRespectWildIgnore=1
 let g:NERDTreeWinSize=40
 
@@ -167,14 +171,15 @@ let g:tagbar_width = 26
 
 " Tmux-navigator setup
 let g:tmux_navigator_no_mappings = 1
-nnoremap <silent> <C-h> :TmuxNavigateLeft<CR>
-nnoremap <silent> <C-j> :TmuxNavigateDown<CR>
-nnoremap <silent> <C-k> :TmuxNavigateUp<CR>
-nnoremap <silent> <C-l> :TmuxNavigateRight<CR>
+"nnoremap <silent> <C-h> :TmuxNavigateLeft<CR>
+"nnoremap <silent> <C-j> :TmuxNavigateDown<CR>
+"nnoremap <silent> <C-k> :TmuxNavigateUp<CR>
+"nnoremap <silent> <C-l> :TmuxNavigateRight<CR>
 
 " EasyMotion setup
 let g:EasyMotion_do_mapping = 0
 nmap <Leader>f <Plug>(easymotion-bd-w)
+nmap <c-g> <Plug>(easymotion-bd-w)
 
 " NERDCommenter setup 
 let g:NERDCreateDefaultMappings = 0
@@ -272,10 +277,6 @@ let g:airline_symbols.whitespace = 'Ξ'
 let g:airline_theme='light'
 let g:solarized_base16 = 1
 
-" Quickfix-reflector
-let g:qf_modifiable = 1
-let g:qf_write_changes = 1
-
 " Colors-Solarized setup
 call togglebg#map("<F12>")
 set t_Co=16
@@ -331,6 +332,10 @@ nmap <leader>ll :ALELint<CR>
 let g:disable_protodef_mapping=1
 nmap <Leader>rg :set paste<cr>i<c-r>=protodef#ReturnSkeletonsFromPrototypesForCurrentBuffer({})<cr><esc>='[:set nopaste<cr>
 
+" Quickfix-reflector
+let g:qf_modifiable = 1
+let g:qf_write_changes = 1
+
 """"""""""""""""""""""""""""""""""""
 " Custom remapping
 
@@ -352,17 +357,17 @@ noremap <Leader>d "+d
 
 " Faster delete without registry (wipe) and replacement
 noremap <Leader>w "_d
-noremap <Leader>ciw "_diwp
+noremap <Leader>ciw viwpgvy
 noremap <Leader>cc "_ddO<ESC>P
 
 " Allow add remove line in normal mode
 nnoremap <silent><Leader>xo m`:silent +g/\m^\s*$/d<CR>``:noh<CR>
 nnoremap <silent><Leader>xO m`:silent -g/\m^\s*$/d<CR>``:noh<CR>
-nnoremap <silent><Leader>o :set paste<CR>m`o<Esc>``:set nopaste<CR>
-nnoremap <silent><Leader>O :set paste<CR>m`O<Esc>``:set nopaste<CR>
+nnoremap <silent><Leader>o mmo<ESC>`m
+nnoremap <silent><Leader>O mmO<ESC>`m
 
 " Search and replace (can use :Ggrep and :grep)
-nnoremap <Leader>rr :%s/\<<C-r><C-w>\>/<C-r><C-w>/gc <bar> update<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+nnoremap <Leader>rn :%s/\<<C-r><C-w>\>/<C-r><C-w>/gc <bar> update<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
 nnoremap <Leader>S /\c\<<C-r><C-w>\><CR>
 nnoremap <Leader>* :Ggrep -w <C-r><C-w><CR><bar>:botright copen<CR>
 nnoremap <Leader>// :Ggrep<Space>
