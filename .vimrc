@@ -8,16 +8,10 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
-" Read the project .editorconfig file and apply rules
-Plugin 'editorconfig/editorconfig-vim'
-
 Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'easymotion/vim-easymotion'
-
-" Move between windows with c+hjkl
-Plugin 'christoomey/vim-tmux-navigator'
 
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'SirVer/ultisnips'
@@ -57,10 +51,10 @@ Plugin 'mxw/vim-jsx'
 Plugin 'mattn/emmet-vim'
 
 " Asynchronous Lint Engine
-Plugin 'w0rp/ale'
+" Plugin 'w0rp/ale'
  
 " A bunch of utilities for Python
-Plugin 'klen/python-mode'
+" Plugin 'klen/python-mode'
 
 "Plugin 'derekwyatt/vim-fswitch'
 "Plugin 'derekwyatt/vim-protodef'
@@ -69,7 +63,7 @@ Plugin 'klen/python-mode'
 Plugin 'lervag/vimtex'
 Plugin 'suan/vim-instant-markdown'
 
-Plugin 'altercation/vim-colors-solarized'
+" Plugin 'altercation/vim-colors-solarized'
 call vundle#end()
 
 filetype plugin indent on
@@ -137,7 +131,8 @@ map - <C-W>-
 map + <C-W>+
 set hidden " Remove warning when changing buffer w/o saving
 
-set directory=$HOME/.vim/swapfiles//
+set swapfile
+set dir=/home/smichaud/.vim/swapfiles/
 
 " Fuzzy finder: ignore stuff that can't be opened, and generated files
 let g:fuzzy_ignore = "*.png;*.PNG;*.JPG;*.jpg;*.GIF;*.gif;vendor/**;coverage/**;tmp/**;rdoc/**"
@@ -160,6 +155,8 @@ let NERDTreeRespectWildIgnore=1
 let g:NERDTreeWinSize=40
 
 " Ctrlp setup
+execute "set <M-f>=\ef"
+let g:ctrlp_map = '<M-f>'
 let g:ctrlp_show_hidden=1
 let g:ctrlp_custom_ignore = 'node_modules\|git'
 
@@ -205,7 +202,7 @@ let g:clighter_libclang_file = '/usr/lib/llvm-3.4/lib/libclang.so.1'
 let g:clighter_occurrences_mode = 1
 
 " Ultisnip setup
-let g:UltiSnipsExpandTrigger = "<C-Space>"
+let g:UltiSnipsExpandTrigger = "<C-L>"
 let g:UltiSnipsJumpForwardTrigger = "<C-J>"
 let g:UltiSnipsJumpBackwardTrigger = "<C-K>"
 let g:UltiSnipsEditSplit = "vertical"
@@ -278,15 +275,15 @@ let g:airline_theme='light'
 let g:solarized_base16 = 1
 
 " Colors-Solarized setup
-call togglebg#map("<F12>")
-set t_Co=16
-let g:solarized_termcolors=16
-let g:solarized_italic=1
-let g:solarized_bold=1
-let g:solarized_underline=1
-syntax enable
-set background=light
-colorscheme solarized
+" call togglebg#map("<F12>")
+" set t_Co=16
+" let g:solarized_termcolors=16
+" let g:solarized_italic=1
+" let g:solarized_bold=1
+" let g:solarized_underline=1
+" syntax enable
+" set background=light
+" colorscheme solarized
 
 " Vimtex setup
 let g:tex_flavor = "latex"
@@ -310,6 +307,9 @@ let g:vimtex_compiler_latexmk = {
 nnoremap <Leader>bl :VimtexCompile<CR>
 
 " Markdown setup
+let g:instant_markdown_autostart = 0
+let g:instant_markdown_allow_unsafe_content = 1
+map <leader>bm :InstantMarkdownPreview<CR>
 
 " HTML
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.xml,*.js"
