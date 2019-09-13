@@ -38,6 +38,9 @@ Plugin 'tpope/vim-surround'
 " Autoclose quotes, parentheses, brackets...
 Plugin 'Raimondi/delimitMate'
 
+" Terraform
+Plugin 'hashivim/vim-terraform'
+
 " Highlight enclosing tags
 Plugin 'gregsexton/MatchTag'
 " Autoclose html/xml tags
@@ -63,7 +66,7 @@ Plugin 'mattn/emmet-vim'
 Plugin 'lervag/vimtex'
 Plugin 'suan/vim-instant-markdown'
 
-" Plugin 'altercation/vim-colors-solarized'
+Plugin 'altercation/vim-colors-solarized'
 call vundle#end()
 
 filetype plugin indent on
@@ -272,18 +275,25 @@ let g:airline_symbols.paste = 'Þ'
 let g:airline_symbols.paste = '∥'
 let g:airline_symbols.whitespace = 'Ξ'
 let g:airline_theme='light'
-let g:solarized_base16 = 1
 
 " Colors-Solarized setup
-" call togglebg#map("<F12>")
-" set t_Co=16
-" let g:solarized_termcolors=16
-" let g:solarized_italic=1
-" let g:solarized_bold=1
-" let g:solarized_underline=1
-" syntax enable
-" set background=light
-" colorscheme solarized
+let g:solarized_base16 = 1
+"call togglebg#map("<F12>")
+set t_Co=16
+let g:solarized_termcolors=16
+let g:solarized_italic=1
+let g:solarized_bold=1
+let g:solarized_underline=1
+syntax enable
+set background=light
+"colorscheme solarized
+
+" Terraform
+let g:terraform_align=1
+let g:terraform_fold_sections=0
+let g:terraform_remap_spacebar=0
+let g:terraform_commentstring='//%s'
+let g:terraform_fmt_on_save=1
 
 " Vimtex setup
 let g:tex_flavor = "latex"
@@ -319,14 +329,14 @@ au FileType xml,html,phtml,xhtml,js let b:delimitMate_matchpairs = "(:),[:],{:}"
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_ngdoc = 1
 
-let g:user_emmet_expandabbr_key = "<C-e>"
-let g:ale_set_quickfix = 1
+"let g:user_emmet_expandabbr_key = "<C-e>"
+"let g:ale_set_quickfix = 1
 
 " Asynchronous Lint Engine
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_on_enter = 0
-let g:ale_lint_on_save = 1
-nmap <leader>ll :ALELint<CR>
+"let g:ale_lint_on_text_changed = 'never'
+"let g:ale_lint_on_enter = 0
+"let g:ale_lint_on_save = 1
+"nmap <leader>ll :ALELint<CR>
 
 " Protodef setup
 let g:disable_protodef_mapping=1
@@ -371,6 +381,7 @@ nnoremap <Leader>rn :%s/\<<C-r><C-w>\>/<C-r><C-w>/gc <bar> update<Left><Left><Le
 nnoremap <Leader>S /\c\<<C-r><C-w>\><CR>
 nnoremap <Leader>* :Ggrep -w <C-r><C-w><CR><bar>:botright copen<CR>
 nnoremap <Leader>// :Ggrep<Space>
+nnoremap <Leader>/a :Ggrep<Space>
 " Function to toggle the quickfix window
 command -bang -nargs=? QFix call QFixToggle(<bang>0)
 function! QFixToggle(forced)

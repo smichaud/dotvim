@@ -4,7 +4,7 @@ This repository contains my personal .vim folder.
 I currently use Vundle to manage plugins.
 ```
 mkdir ~/.vim/bundle
-git clone VundleVim/Vundle.vim ~/.vim/bundle/Vundle.vim
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim
 :PluginInstall
 ```
